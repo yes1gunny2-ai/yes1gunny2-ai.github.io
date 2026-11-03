@@ -1,23 +1,19 @@
 {
-  "warning": "AI 초안 라벨로 학습한 실험 모델입니다. 지표는 AI 초안과의 일치도이며 사람 정답 기준 성능이 아닙니다.",
+  "warning": "AI 초안 라벨로 학습한 실험 모델입니다. 지표는 AI 초안과의 일치도이며 사람 정답 기준 성능이 아닙니다. 실험마다 개발셋과 라벨 지침이 달라 직접 비교할 수 없습니다.",
+  "notes": "소규모 동작 확인 실행은 제외했습니다.",
   "runs": [
     {
+      "run": "v1 한국어 599건",
       "model_version": "reviewml-2026-10-28-bb2cd11c",
+      "created_at": "2026-10-28T19:46:57",
       "base_model": "beomi/KcELECTRA-base",
       "experimental": true,
       "label_basis": "ai_draft",
+      "label_version": "AI 초안 v1 · 학습 700(Claude 작업 세션, 사람 검수 전)",
       "validation_basis": "AI 초안과의 일치도(학습 700 안 임시 개발셋)",
       "train_reviews": 599,
       "dev_reviews": 100,
-      "seed": 42,
       "gpu": "NVIDIA GeForce RTX 4070 SUPER",
-      "notes": [
-        "실험용 모델: AI 초안으로 학습·사람 정답 기준 성능 미검증. validation 값은 AI 초안과의 일치도입니다.",
-        "A의 성능은 사람이 지정한 근거 구간을 입력으로 준 분류 성능입니다. 전체 자동 분석 성능이 아닙니다.",
-        "전체 자동 분석(B→A) 성능은 evaluate 명령으로 따로 잰 값만 인정합니다.",
-        "이유 유무 분류만 학습합니다. 이유 구간 추출은 학습하지 않았습니다.",
-        "검증 결과는 같은 영화들의 리뷰 분포 기준입니다. 처음 보는 영화에 대한 일반화는 unseen_test로 따로 평가해야 합니다."
-      ],
       "dev_f1_model": {
         "has_opinion": 0.9948,
         "span_exact": 0.651,
@@ -34,22 +30,17 @@
       }
     },
     {
+      "run": "v1 한국어 4,590건",
       "model_version": "reviewml-2026-10-28-69db1afa",
+      "created_at": "2026-10-28T20:51:55",
       "base_model": "beomi/KcELECTRA-base",
       "experimental": true,
       "label_basis": "ai_draft",
+      "label_version": "AI 초안 v1 · 학습 700 + 확대 3,991(Claude 작업 세션, 사람 검수 전)",
       "validation_basis": "AI 초안과의 일치도(학습 700 안 임시 개발셋)",
       "train_reviews": 4590,
       "dev_reviews": 100,
-      "seed": 42,
       "gpu": "NVIDIA GeForce RTX 4070 SUPER",
-      "notes": [
-        "실험용 모델: AI 초안으로 학습·사람 정답 기준 성능 미검증. validation 값은 AI 초안과의 일치도입니다.",
-        "A의 성능은 사람이 지정한 근거 구간을 입력으로 준 분류 성능입니다. 전체 자동 분석 성능이 아닙니다.",
-        "전체 자동 분석(B→A) 성능은 evaluate 명령으로 따로 잰 값만 인정합니다.",
-        "이유 유무 분류만 학습합니다. 이유 구간 추출은 학습하지 않았습니다.",
-        "검증 결과는 같은 영화들의 리뷰 분포 기준입니다. 처음 보는 영화에 대한 일반화는 unseen_test로 따로 평가해야 합니다."
-      ],
       "dev_f1_model": {
         "has_opinion": 0.9741,
         "span_exact": 0.7193,
@@ -63,6 +54,87 @@
         "span_overlap": 0.2216,
         "opinion_strict": 0.1027,
         "opinion_bag_no_span": 0.3405
+      }
+    },
+    {
+      "run": "v1 영어 1,712건",
+      "model_version": "reviewml-2026-10-29-7e2b76b7",
+      "created_at": "2026-10-29T18:40:32",
+      "base_model": "roberta-base",
+      "experimental": true,
+      "label_basis": "ai_draft",
+      "label_version": "en-ai-draft-v1",
+      "validation_basis": "AI 초안과의 일치도(학습 700 안 임시 개발셋)",
+      "train_reviews": 1712,
+      "dev_reviews": 100,
+      "gpu": "NVIDIA GeForce RTX 4070 SUPER",
+      "dev_f1_model": {
+        "has_opinion": 0.9949,
+        "span_exact": 0.4495,
+        "span_overlap": 0.6124,
+        "opinion_strict": 0.5126,
+        "opinion_bag_no_span": 0.7033
+      },
+      "dev_f1_majority_baseline": {
+        "has_opinion": 0.995,
+        "span_exact": 0.0,
+        "span_overlap": 0.0,
+        "opinion_strict": 0.0,
+        "opinion_bag_no_span": 0.1507
+      }
+    },
+    {
+      "run": "v2 한국어 19,795건",
+      "model_version": "reviewml-2026-10-31-a596d1ec",
+      "created_at": "2026-10-31T19:16:48",
+      "base_model": "beomi/KcELECTRA-base",
+      "experimental": true,
+      "label_basis": "ai_draft",
+      "label_version": "AI 초안 v2 전체 · 한국어(사람 검수 전)",
+      "validation_basis": "AI 초안과의 일치도(학습용 리뷰 안에서 고정한 개발셋)",
+      "train_reviews": 19795,
+      "dev_reviews": 300,
+      "gpu": "NVIDIA GeForce RTX 4070 SUPER",
+      "dev_f1_model": {
+        "has_opinion": 0.9576,
+        "span_exact": 0.6787,
+        "span_overlap": 0.8123,
+        "opinion_strict": 0.7345,
+        "opinion_bag_no_span": 0.8115
+      },
+      "dev_f1_majority_baseline": {
+        "has_opinion": 0.9796,
+        "span_exact": 0.1233,
+        "span_overlap": 0.3294,
+        "opinion_strict": 0.1347,
+        "opinion_bag_no_span": 0.3834
+      }
+    },
+    {
+      "run": "v2 영어 3,738건",
+      "model_version": "reviewml-2026-11-01-77fb5ee3",
+      "created_at": "2026-11-01T05:39:32",
+      "base_model": "roberta-base",
+      "experimental": true,
+      "label_basis": "ai_draft",
+      "label_version": "AI 초안 v2 전체 · 영어(사람 검수 전)",
+      "validation_basis": "AI 초안과의 일치도(학습용 리뷰 안에서 고정한 개발셋)",
+      "train_reviews": 3738,
+      "dev_reviews": 150,
+      "gpu": "NVIDIA GeForce RTX 4070 SUPER",
+      "dev_f1_model": {
+        "has_opinion": 1.0,
+        "span_exact": 0.4752,
+        "span_overlap": 0.681,
+        "opinion_strict": 0.5652,
+        "opinion_bag_no_span": 0.7328
+      },
+      "dev_f1_majority_baseline": {
+        "has_opinion": 0.9967,
+        "span_exact": 0.0,
+        "span_overlap": 0.0042,
+        "opinion_strict": 0.0,
+        "opinion_bag_no_span": 0.1567
       }
     }
   ]

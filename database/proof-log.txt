@@ -1,0 +1,53 @@
+Portfolio DB 동작 기록
+실행 시각: 2026-11-03T07:26:48.121Z
+대상: 실제 DB의 임시 복사본 (공개 DB와 원본은 변경하지 않음)
+
+[1] SQL로 프로젝트 조회
+SELECT title, length(body) FROM projects ORDER BY sort_order;
+   540자  Silvaco TCAD 태양전지 구조 개선
+   592자  HBM Reliability Digital Twin 초기 설계
+   529자  SEMICON ATLAS
+   536자  영화 리뷰 감성 분석 웹 플랫폼
+   514자  뉴스 기사 입장 분석 모델
+   468자  HBM TSV·Micro-bump 구조 분석
+   439자  MATLAB 기반 레이다 신호처리
+   474자  태양광 방향 추적형 스마트 화분
+
+[2] 관계 조회: 프로젝트별 기술
+SELECT p.title, group_concat(t.name, ', ') FROM projects p JOIN project_technologies pt ON pt.project_id = p.id JOIN technologies t ON t.id = pt.technology_id GROUP BY p.id;
+  Silvaco TCAD 태양전지 구조 개선: Silvaco TCAD
+  HBM Reliability Digital Twin 초기 설계: Python, PyTorch, scikit-learn, XGBoost, pandas, Streamlit, Claude Code
+  SEMICON ATLAS: Next.js, TypeScript, Prisma, SQLite, Claude Code
+  영화 리뷰 감성 분석 웹 플랫폼: Next.js, TypeScript, SQLite, Python, PyTorch, Transformers, Claude Code
+  뉴스 기사 입장 분석 모델: Python, PyTorch, Transformers, Streamlit, Claude Code
+  MATLAB 기반 레이다 신호처리: MATLAB
+  태양광 방향 추적형 스마트 화분: 회로 제작·조립
+
+[3] 규칙 위반 저장 시도
+  확인: 토큰 없는 추가 요청 거부 (HTTP 401)
+  확인: 200자 미만 본문 거부 (HTTP 400): body: 본문은 200~1000자여야 합니다. 현재 5자입니다.
+  확인: 확인 전 수치의 공개 저장 거부 (HTTP 400)
+
+[4] 추가 → 저장 → 빌드
+  확인: 프로젝트 추가 (HTTP 201, id 9)
+  확인: 프로젝트 수 9개
+  확인: 다대다 관계 저장 (기술 2건)
+  확인: 빌드 결과에 상세 페이지 생성 (/projects/db-proof-test/)
+
+[5] 수정 → 저장 → 빌드
+  확인: 프로젝트 수정 (HTTP 200)
+  확인: 빌드 결과에 수정 내용 반영
+
+[6] 삭제 → 저장 → 빌드
+  확인: 프로젝트 삭제 (HTTP 200)
+  확인: 연결된 관계 행 함께 삭제
+  확인: 프로젝트 수 8개로 복귀
+  확인: 빌드 결과에서 상세 페이지 제거
+
+[7] 변경 이력
+  create projects#9
+  update projects#9
+  delete projects#9
+
+[8] 원본 보호
+  확인: 원본 DB 해시 변경 없음
