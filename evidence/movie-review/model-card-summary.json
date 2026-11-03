@@ -1,0 +1,69 @@
+{
+  "warning": "AI 초안 라벨로 학습한 실험 모델입니다. 지표는 AI 초안과의 일치도이며 사람 정답 기준 성능이 아닙니다.",
+  "runs": [
+    {
+      "model_version": "reviewml-2026-10-28-bb2cd11c",
+      "base_model": "beomi/KcELECTRA-base",
+      "experimental": true,
+      "label_basis": "ai_draft",
+      "validation_basis": "AI 초안과의 일치도(학습 700 안 임시 개발셋)",
+      "train_reviews": 599,
+      "dev_reviews": 100,
+      "seed": 42,
+      "gpu": "NVIDIA GeForce RTX 4070 SUPER",
+      "notes": [
+        "실험용 모델: AI 초안으로 학습·사람 정답 기준 성능 미검증. validation 값은 AI 초안과의 일치도입니다.",
+        "A의 성능은 사람이 지정한 근거 구간을 입력으로 준 분류 성능입니다. 전체 자동 분석 성능이 아닙니다.",
+        "전체 자동 분석(B→A) 성능은 evaluate 명령으로 따로 잰 값만 인정합니다.",
+        "이유 유무 분류만 학습합니다. 이유 구간 추출은 학습하지 않았습니다.",
+        "검증 결과는 같은 영화들의 리뷰 분포 기준입니다. 처음 보는 영화에 대한 일반화는 unseen_test로 따로 평가해야 합니다."
+      ],
+      "dev_f1_model": {
+        "has_opinion": 0.9948,
+        "span_exact": 0.651,
+        "span_overlap": 0.8029,
+        "opinion_strict": 0.6583,
+        "opinion_bag_no_span": 0.7299
+      },
+      "dev_f1_majority_baseline": {
+        "has_opinion": 0.9848,
+        "span_exact": 0.0486,
+        "span_overlap": 0.2216,
+        "opinion_strict": 0.1027,
+        "opinion_bag_no_span": 0.3405
+      }
+    },
+    {
+      "model_version": "reviewml-2026-10-28-69db1afa",
+      "base_model": "beomi/KcELECTRA-base",
+      "experimental": true,
+      "label_basis": "ai_draft",
+      "validation_basis": "AI 초안과의 일치도(학습 700 안 임시 개발셋)",
+      "train_reviews": 4590,
+      "dev_reviews": 100,
+      "seed": 42,
+      "gpu": "NVIDIA GeForce RTX 4070 SUPER",
+      "notes": [
+        "실험용 모델: AI 초안으로 학습·사람 정답 기준 성능 미검증. validation 값은 AI 초안과의 일치도입니다.",
+        "A의 성능은 사람이 지정한 근거 구간을 입력으로 준 분류 성능입니다. 전체 자동 분석 성능이 아닙니다.",
+        "전체 자동 분석(B→A) 성능은 evaluate 명령으로 따로 잰 값만 인정합니다.",
+        "이유 유무 분류만 학습합니다. 이유 구간 추출은 학습하지 않았습니다.",
+        "검증 결과는 같은 영화들의 리뷰 분포 기준입니다. 처음 보는 영화에 대한 일반화는 unseen_test로 따로 평가해야 합니다."
+      ],
+      "dev_f1_model": {
+        "has_opinion": 0.9741,
+        "span_exact": 0.7193,
+        "span_overlap": 0.8697,
+        "opinion_strict": 0.7004,
+        "opinion_bag_no_span": 0.7834
+      },
+      "dev_f1_majority_baseline": {
+        "has_opinion": 0.9848,
+        "span_exact": 0.0486,
+        "span_overlap": 0.2216,
+        "opinion_strict": 0.1027,
+        "opinion_bag_no_span": 0.3405
+      }
+    }
+  ]
+}

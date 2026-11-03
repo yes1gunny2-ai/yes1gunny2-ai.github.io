@@ -1,0 +1,9 @@
+﻿table,meaning,row_count,snapshot
+Company,등록 기업,237,2026-10-12
+Technology,기술,35,2026-10-12
+CompanyTechnology,기업-기술 관계,139,2026-10-12
+Source,출처,526,2026-10-12
+Country,국가,236,2026-10-12
+Facility,거점,81,2026-10-12
+CompanyRelation,기업 관계,25,2026-10-12
+FinancialSnapshot,재무 스냅샷,236,2026-10-12
